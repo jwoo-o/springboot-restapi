@@ -1,4 +1,4 @@
-package com.asset.controller;
+package com.asset.webservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
