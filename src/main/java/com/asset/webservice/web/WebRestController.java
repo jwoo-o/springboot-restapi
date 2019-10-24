@@ -1,31 +1,24 @@
 package com.asset.webservice.web;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.asset.webservice.posts.PostsRepository;
-import com.asset.webservice.posts.PostsSaveDto;
-
+import com.asset.webservice.domain.posts.PostsSaveDto;
+import com.asset.webservice.service.PostsService;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
 public class WebRestController {
 
 	
-	private PostsRepository repository;
+	private PostsService postsService;
 	
-	@RequestMapping("/")
-	public String home() {
-		
-		return "test";
-	}
+
 	
-	@RequestMapping("/post")
-	public PostsSaveDto post(@RequestBody PostsSaveDto dto) {
-		repository.save(dto.toEntity());
-		
-		return dto;
+	@PostMapping("/post")
+	public Long post(@RequestBody PostsSaveDto dto) {
+
+		return postsService.save(dto);
 	}
 }
